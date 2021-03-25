@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/f32dfec8d8.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="assets/images/me-gusta.svg">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <header id="header">
+        <!-- <h1>Conecta, comparte y reacciona con tu gente en tu vida.</h1> -->
+        <img src="assets/images/header_image.svg" alt="" loading="lazy" class="header_image">
+    </header>
+    <form id="formulario_registro" autocomplete="off">
+        <h3>Crear una nueva cuenta</h3>
+        <p>Únete a X y conecta con miles de usuarios alrededor del mundo.</p>
+        <div class="form_field">
+            <input type="text" id="nombre" placeholder="Tu nombre" autocomplete="off">
+        </div>
+        <div class="form_field">
+            <input type="email" id="email" placeholder="Email" autocomplete="off">
+        </div>
+        <div class="form_field">
+            <input type="password" id="clave" placeholder="Contraseña" autocomplete="off">
+        </div>
+        <span class="genero_title">Género</span>
+        <div class="genero_container">
+            <div class="radio_option">
+                <input type="radio" name="genero" id="hombre">
+                <label for="hombre">Hombre</label>
+            </div>
+            <div class="radio_option">
+                <input type="radio" name="genero" id="mujer">
+                <label for="mujer">Mujer</label>
+            </div>
+            <div class="radio_option">
+                <input type="radio" name="genero" id="otro">
+                <label for="otro">Prefiero no decirlo</label>
+            </div>
+        </div>
+        <small class="terminos">Creando una cuenta en esta red social, aceptas nuestros <a href="!#">Términos y
+                condiciones</a> y la <a href="!#">Política de cookies.</a></small>
+        <button type="button" id="registro_btn">Crear una cuenta<i class="fas fa-circle-notch"></i></button>
+    </form>
+
+    <script src="assets/js/app.js"></script>
+</body>
+
+</html>
