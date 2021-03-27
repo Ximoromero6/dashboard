@@ -8,25 +8,27 @@ function validatePassword(password) {
     return password.value.match(password_regex) ? true : false;
 }
 
-
 let errors_container = document.querySelector(".errors_container"),
     error_messages = new Array();
 
 document.querySelector("#registro_btn").addEventListener("click", (e) => {
-    e.target.classList.add("loading");
+    e.target.classList.add("loading", "disabled");
+    e.target.disabled = true;
 
     let name = document.querySelector("#nombre"),
         email = document.querySelector("#email"),
-        clave = document.querySelector("#clave");
+        clave = document.querySelector("#clave"),
+        genero = "",
+        radio_buttons = document.getElementsByName("genero"),
+        valid = false;
 
-    //Comprobamos cada campo
     if (name.value == "" || email.value == "" || clave.value == "") {
         error_messages.push("Por favor, rellena los campos en rojo.");
-        console.log(this);
     }
 
     setTimeout(() => {
-        e.target.classList.remove("loading");
+        e.target.classList.remove("loading", "disabled");
+        e.target.disabled = false;
 
         if (name.value == "")
             name.classList.add("error")
@@ -38,8 +40,7 @@ document.querySelector("#registro_btn").addEventListener("click", (e) => {
             email.classList.add("error")
         else {
             email.classList.remove("error");
-            console.log(validateEmail(email));
-            if (!validateEmail(email.value)) {
+            if (!validateEmail(email)) {
                 error_messages.push("Formato de email incorrecto. Ej: email@dominio.com");
             }
         }
@@ -53,6 +54,20 @@ document.querySelector("#registro_btn").addEventListener("click", (e) => {
             }
         }
 
+        for (let i = 0; i < radio_buttons.length; i++) {
+            if (radio_buttons[i].checked) {
+                valid = true;
+                genero = radio_buttons[i].value;
+                break;
+            } else {
+                valid = false;
+            }
+        }
+
+        if (!valid) {
+            error_messages.push("Por favor, introduce un género");
+        }
+
         if (error_messages.length > 0) {
             errors_container.style.display = "flex";
             errors_container.innerHTML = "";
@@ -62,7 +77,16 @@ document.querySelector("#registro_btn").addEventListener("click", (e) => {
             });
             error_messages.length = 0;
         } else {
-            console.log("CORRECTO");
+            errors_container.innerHTML = "";
+            errors_container.style.display = "none";
+
+            let data = {
+                "name": name.value,
+                "email": email.value,
+                "password": clave.value,
+                "gender": genero
+            };
+            console.log("CORRECTO " + JSON.stringify(data));
         }
     }, 2000);
 });

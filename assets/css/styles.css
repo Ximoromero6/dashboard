@@ -176,7 +176,8 @@ form#formulario_registro button#registro_btn.loading i {
 }
 
 form#formulario_registro button#registro_btn.disabled {
-  background-color: #5d44c9;
+  background-color: #b3a7e6;
+  cursor: not-allowed;
 }
 
 @media (max-width: 768px) {

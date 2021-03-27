@@ -27,37 +27,27 @@
         </div>
         <div class="form_field">
             <input type="password" id="clave" placeholder="Contraseña" autocomplete="off">
-            <small></small>
+            <small>Introduce al menos 4 dígitos entre mayúsculas, minusculas y números.</small>
         </div>
         <span class="genero_title">Género</span>
         <div class="genero_container">
             <div class="radio_option">
-                <input type="radio" name="genero" id="hombre">
+                <input type="radio" name="genero" id="hombre" value="hombre">
                 <label for="hombre">Hombre</label>
             </div>
             <div class="radio_option">
-                <input type="radio" name="genero" id="mujer">
+                <input type="radio" name="genero" id="mujer" value="mujer">
                 <label for="mujer">Mujer</label>
             </div>
             <div class="radio_option">
-                <input type="radio" name="genero" id="otro">
+                <input type="radio" name="genero" id="otro" value="otro">
                 <label for="otro">Prefiero no decirlo</label>
             </div>
         </div>
         <small class="terminos">Creando una cuenta en esta red social, aceptas nuestros <a href="!#">Términos y
                 condiciones</a> y la <a href="!#">Política de cookies.</a></small>
         <button type="button" id="registro_btn">Crear una cuenta<i class="fas fa-circle-notch"></i></button>
-        <div class="errors_container">
-            <!--   <small>
-                <li>Por favor, rellena los campos en rojo.</li>
-            </small>
-            <small>
-                <li>Por favor, rellena los campos en rojo.</li>
-            </small>
-            <small>
-                <li>Por favor, rellena los campos en rojo.</li>
-            </small> -->
-        </div>
+        <div class="errors_container"></div>
     </form>
 
     <script src="assets/js/app.js"></script>

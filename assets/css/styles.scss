@@ -127,7 +127,8 @@ form#formulario_registro {
             }
         }
         &.disabled {
-            background-color: lighten(#3f2b96, 15);
+            background-color: lighten(#3f2b96, 40);
+            cursor: not-allowed;
         }
     }
     @media(max-width: 768px) {
