@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
-
 * {
     padding: 0;
     margin: 0;
@@ -19,7 +18,6 @@ header#header {
     margin: 4px;
     border-radius: 6px;
     position: relative;
-
     img.header_image {
         width: 25%;
         bottom: 0;
@@ -39,22 +37,18 @@ form#formulario_registro {
     position: absolute;
     top: 10%;
     right: 15%;
-
     h3 {
         font-size: 30px;
         font-weight: 800;
     }
-
     p {
         font-weight: 600;
         color: rgb(143, 138, 138);
         margin-bottom: 25px;
     }
-
     div.form_field {
         width: 100%;
         margin-bottom: 20px;
-
         input {
             width: 100%;
             border: 1px solid transparent;
@@ -65,55 +59,46 @@ form#formulario_registro {
             color: #333333;
             font-weight: 600;
             outline: 0;
-
             &::placeholder {
                 font-weight: 600;
                 color: #9d9fa3;
-
                 font-family: 'Nunito Sans', sans-serif;
             }
-
             &:focus {
                 border-color: #3f2b96;
                 box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, lighten(#3f2b96, 2) 0px 0px 1px 0px;
             }
+            &.error {
+                border-color: #f14668;
+            }
         }
     }
-
     span.genero_title {
         font-weight: 700;
     }
-
     .genero_container {
         display: flex;
         justify-content: flex-start;
         align-items: center;
-
         .radio_option {
             margin: 5px 25px 20px 0;
-
             label,
             input {
                 font-weight: 600;
                 cursor: pointer;
             }
         }
-
     }
-
     small.terminos {
         margin-top: 15px;
-
         a {
             text-decoration: none;
             color: #a8c0ff;
-
             &:hover {
                 text-decoration: underline;
             }
         }
     }
-
     button#registro_btn {
         width: 100%;
         padding: 14px;
@@ -127,29 +112,45 @@ form#formulario_registro {
         margin-top: 20px;
         cursor: pointer;
         outline: 0;
-
         &:hover {
             background-color: lighten(#3f2b96, 9);
         }
-
         position: relative;
-
         i {
             display: none;
             margin-left: 20px;
             animation: rotate 1s infinite;
         }
-
         &.loading {
             i {
                 display: inline-block;
             }
         }
+        &.disabled {
+            background-color: lighten(#3f2b96, 15);
+        }
     }
-
     @media(max-width: 768px) {
         left: 50%;
         transform: translateX(-50%);
+    }
+    .errors_container {
+        display: none;
+        border-radius: 4px;
+        margin-top: 15px;
+        padding: 5px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        background-color: #feecf0;
+        border: 1px solid #f14668;
+        small {
+            li {
+                color: #cc0f35;
+                font-weight: 700;
+                margin: 5px 0;
+            }
+        }
     }
 }
 

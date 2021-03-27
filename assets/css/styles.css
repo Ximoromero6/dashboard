@@ -101,6 +101,10 @@ form#formulario_registro div.form_field input:focus {
           box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, #422d9e 0px 0px 1px 0px;
 }
 
+form#formulario_registro div.form_field input.error {
+  border-color: #f14668;
+}
+
 form#formulario_registro span.genero_title {
   font-weight: 700;
 }
@@ -171,12 +175,41 @@ form#formulario_registro button#registro_btn.loading i {
   display: inline-block;
 }
 
+form#formulario_registro button#registro_btn.disabled {
+  background-color: #5d44c9;
+}
+
 @media (max-width: 768px) {
   form#formulario_registro {
     left: 50%;
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%);
   }
+}
+
+form#formulario_registro .errors_container {
+  display: none;
+  border-radius: 4px;
+  margin-top: 15px;
+  padding: 5px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  background-color: #feecf0;
+  border: 1px solid #f14668;
+}
+
+form#formulario_registro .errors_container small li {
+  color: #cc0f35;
+  font-weight: 700;
+  margin: 5px 0;
 }
 
 @-webkit-keyframes rotate {
