@@ -42,7 +42,8 @@ document.querySelector("#registro_btn").addEventListener("click", (e) => {
         clave = document.querySelector("#clave"),
         genero = "",
         radio_buttons = document.getElementsByName("genero"),
-        valid = false;
+        valid = false,
+        random_wait = Math.floor(Math.random() * 2000 + 500);
 
     if (name.value == "" || email.value == "" || clave.value == "") {
         error_messages.push("Por favor, rellena los campos en rojo.");
@@ -121,5 +122,5 @@ document.querySelector("#registro_btn").addEventListener("click", (e) => {
                 console.error("Failed!", error);
             });
         }
-    }, 1500);
+    }, random_wait);
 });

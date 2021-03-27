@@ -82,10 +82,25 @@ form#formulario_registro {
         align-items: center;
         .radio_option {
             margin: 5px 25px 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             label,
             input {
                 font-weight: 600;
                 cursor: pointer;
+            }
+            label {
+                margin-left: 3px;
+            }
+        }
+        @media(max-width: 576px) {
+            .radio_option {
+                margin: 5px 10px 10px 0;
+                label {
+                    font-size: 13px;
+                    margin-left: 3px;
+                }
             }
         }
     }
