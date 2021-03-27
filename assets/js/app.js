@@ -1,3 +1,25 @@
+const URL = "assets/php/app.php";
+
+function ajaxRequest(url, method, data = "") {
+    return new Promise(function(resolve, reject) {
+        let request = new XMLHttpRequest();
+
+        request.open(method, url, true);
+
+        request.onload = function() {
+            (request.readyState == 4 && request.status == 200) ? resolve(request.response): reject(Error(request.statusText));
+        };
+
+        request.onerror = function() {
+            reject(Error("Network error"));
+        };
+
+        request.setRequestHeader("Content-Type", "application/json");
+
+        request.send(data);
+    });
+}
+
 function validateEmail(email) {
     const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return regex.test(String(email.value).toLowerCase());
@@ -8,7 +30,7 @@ function validatePassword(password) {
     return password.value.match(password_regex) ? true : false;
 }
 
-let errors_container = document.querySelector(".errors_container"),
+let messages_container = document.querySelector(".messages_container"),
     error_messages = new Array();
 
 document.querySelector("#registro_btn").addEventListener("click", (e) => {
@@ -50,7 +72,7 @@ document.querySelector("#registro_btn").addEventListener("click", (e) => {
         else {
             clave.classList.remove("error");
             if (!validatePassword(clave)) {
-                error_messages.push("Formato de contraseña incorrecto");
+                error_messages.push("Formato de contraseña incorrecto.");
             }
         }
 
@@ -65,20 +87,19 @@ document.querySelector("#registro_btn").addEventListener("click", (e) => {
         }
 
         if (!valid) {
-            error_messages.push("Por favor, introduce un género");
+            error_messages.push("Por favor, introduce un género.");
         }
 
         if (error_messages.length > 0) {
-            errors_container.style.display = "flex";
-            errors_container.innerHTML = "";
+            messages_container.classList.add("invalid");
+            messages_container.innerHTML = "";
+            messages_container.classList.remove("valid");
 
             error_messages.forEach((error) => {
-                errors_container.innerHTML += `<small><li>${error}</li></small>`;
+                messages_container.innerHTML += `<small><li>${error}</li></small>`;
             });
             error_messages.length = 0;
         } else {
-            errors_container.innerHTML = "";
-            errors_container.style.display = "none";
 
             let data = {
                 "name": name.value,
@@ -86,7 +107,19 @@ document.querySelector("#registro_btn").addEventListener("click", (e) => {
                 "password": clave.value,
                 "gender": genero
             };
-            console.log("CORRECTO " + JSON.stringify(data));
+
+            ajaxRequest(URL, "POST", JSON.stringify(data)).then(function(response) {
+                let decoded_reponse = JSON.parse(response);
+
+                if (decoded_reponse.code)
+                    messages_container.classList.add("valid");
+                else
+                    messages_container.classList.add("invalid");
+
+                messages_container.innerHTML = `<small><li>${decoded_reponse.message}</li></small>`;
+            }, function(error) {
+                console.error("Failed!", error);
+            });
         }
-    }, 2000);
+    }, 1500);
 });

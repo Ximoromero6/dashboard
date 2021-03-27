@@ -33,7 +33,7 @@ form#formulario_registro {
     max-width: 500px;
     width: 100%;
     border-radius: 8px;
-    padding: 35px 25px;
+    padding: 35px 25px 15px;
     position: absolute;
     top: 10%;
     right: 15%;
@@ -135,7 +135,7 @@ form#formulario_registro {
         left: 50%;
         transform: translateX(-50%);
     }
-    .errors_container {
+    .messages_container {
         display: none;
         border-radius: 4px;
         margin-top: 15px;
@@ -143,13 +143,31 @@ form#formulario_registro {
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
-        background-color: #feecf0;
-        border: 1px solid #f14668;
-        small {
-            li {
-                color: #cc0f35;
-                font-weight: 700;
-                margin: 5px 0;
+        border: 1px solid transparent;
+        &.invalid {
+            display: flex;
+            border-color: #f14668;
+            background-color: #feecf0;
+            small {
+                li {
+                    color: #cc0f35;
+                    font-weight: 700;
+                    margin: 5px 0;
+                    list-style: none;
+                }
+            }
+        }
+        &.valid {
+            display: flex;
+            border-color: #48c78e;
+            background-color: #effaf5;
+            small {
+                li {
+                    color: #257953;
+                    font-weight: 700;
+                    margin: 5px 0;
+                    list-style: none;
+                }
             }
         }
     }
