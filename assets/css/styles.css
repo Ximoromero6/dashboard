@@ -30,6 +30,38 @@ header#header img.header_image {
   position: absolute;
 }
 
+header#header a.logo {
+  text-decoration: none;
+  color: #222;
+  font-weight: 900;
+  font-size: 26px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  padding: 10px 15px;
+}
+
+header#header a.logo img {
+  width: 35px;
+  height: 35px;
+}
+
+header#header a.logo:hover {
+  color: #444;
+}
+
+@media (max-width: 768px) {
+  header#header {
+    min-height: 70vh;
+  }
+}
+
 form#formulario_registro {
   -webkit-box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
           box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -52,6 +84,7 @@ form#formulario_registro p {
   font-weight: 600;
   color: #8f8a8a;
   margin-bottom: 25px;
+  font-size: 15px;
 }
 
 form#formulario_registro div.form_field {
@@ -62,51 +95,69 @@ form#formulario_registro div.form_field {
 form#formulario_registro div.form_field input {
   width: 100%;
   border: 1px solid transparent;
-  padding: 14px 18px;
-  background-color: #e4e6eb;
-  border-radius: 4px;
-  font-size: 15px;
+  padding: 12px 14px;
+  background-color: #eeeeee;
+  border-radius: 6px;
+  font-size: 14px;
   color: #333333;
   font-weight: 600;
   outline: 0;
 }
 
 form#formulario_registro div.form_field input::-webkit-input-placeholder {
-  font-weight: 600;
-  color: #9d9fa3;
+  color: #b9bbbe;
   font-family: 'Nunito Sans', sans-serif;
+  font-weight: lighter;
 }
 
 form#formulario_registro div.form_field input:-ms-input-placeholder {
-  font-weight: 600;
-  color: #9d9fa3;
+  color: #b9bbbe;
   font-family: 'Nunito Sans', sans-serif;
+  font-weight: lighter;
 }
 
 form#formulario_registro div.form_field input::-ms-input-placeholder {
-  font-weight: 600;
-  color: #9d9fa3;
+  color: #b9bbbe;
   font-family: 'Nunito Sans', sans-serif;
+  font-weight: lighter;
 }
 
 form#formulario_registro div.form_field input::placeholder {
-  font-weight: 600;
-  color: #9d9fa3;
+  color: #b9bbbe;
   font-family: 'Nunito Sans', sans-serif;
+  font-weight: lighter;
 }
 
 form#formulario_registro div.form_field input:focus {
   border-color: #3f2b96;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, #422d9e 0px 0px 1px 0px;
-          box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, #422d9e 0px 0px 1px 0px;
+  background-color: #ffffff;
 }
 
 form#formulario_registro div.form_field input.error {
   border-color: #f14668;
 }
 
-form#formulario_registro span.genero_title {
-  font-weight: 700;
+form#formulario_registro div.form_field input.error::-webkit-input-placeholder {
+  color: #f14668;
+}
+
+form#formulario_registro div.form_field input.error:-ms-input-placeholder {
+  color: #f14668;
+}
+
+form#formulario_registro div.form_field input.error::-ms-input-placeholder {
+  color: #f14668;
+}
+
+form#formulario_registro div.form_field input.error::placeholder {
+  color: #f14668;
+}
+
+form#formulario_registro label.form_field_title {
+  font-size: 13px;
+  margin-bottom: 5px;
+  display: block;
+  font-weight: 600;
 }
 
 form#formulario_registro .genero_container {
@@ -122,7 +173,7 @@ form#formulario_registro .genero_container {
 }
 
 form#formulario_registro .genero_container .radio_option {
-  margin: 5px 25px 20px 0;
+  margin: 0 25px 5px 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -174,7 +225,7 @@ form#formulario_registro button#registro_btn {
   font-size: 15px;
   font-weight: 700;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   background-color: #3f2b96;
   color: #fff;
   margin-top: 20px;

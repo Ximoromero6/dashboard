@@ -13,6 +13,7 @@
 
 <body>
     <header id="header">
+        <a href="index.html" class="logo"><img src="assets/images/freehand.svg" alt="Freehand" title="Freehand">freehand</a>
         <!-- <h1>Conecta, comparte y reacciona con tu gente en tu vida.</h1> -->
         <img src="assets/images/header_image.svg" alt="" loading="lazy" class="header_image">
     </header>
@@ -20,16 +21,19 @@
         <h3>Crear una nueva cuenta</h3>
         <p>Únete a X y conecta con miles de usuarios alrededor del mundo.</p>
         <div class="form_field">
-            <input type="text" id="nombre" placeholder="Tu nombre" autocomplete="off">
+            <label for="nombre" class="form_field_title">Nombre Completo</label>
+            <input type="text" id="nombre" placeholder="Escribe tu nombre completo" autocomplete="off">
         </div>
         <div class="form_field">
-            <input type="email" id="email" placeholder="Email" autocomplete="off">
+            <label for="email" class="form_field_title">Email</label>
+            <input type="email" id="email" placeholder="Escribe tu email" autocomplete="off">
         </div>
         <div class="form_field">
-            <input type="password" id="clave" placeholder="Contraseña" autocomplete="off">
+            <label for="clave" class="form_field_title">Contraseña</label>
+            <input type="password" id="clave" placeholder="Elige una contraseña" autocomplete="off">
             <small>Introduce al menos 4 dígitos entre mayúsculas, minusculas y números.</small>
         </div>
-        <span class="genero_title">Género</span>
+        <label class="form_field_title">Género</label>
         <div class="genero_container">
             <div class="radio_option">
                 <input type="radio" name="genero" id="hombre" value="hombre">

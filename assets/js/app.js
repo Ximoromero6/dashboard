@@ -92,9 +92,8 @@ document.querySelector("#registro_btn").addEventListener("click", (e) => {
         }
 
         if (error_messages.length > 0) {
-            messages_container.classList.add("invalid");
             messages_container.innerHTML = "";
-            messages_container.classList.remove("valid");
+            messages_container.className = "messages_container invalid";
 
             error_messages.forEach((error) => {
                 messages_container.innerHTML += `<small><li>${error}</li></small>`;
@@ -109,13 +108,13 @@ document.querySelector("#registro_btn").addEventListener("click", (e) => {
                 "gender": genero
             };
 
-            ajaxRequest(URL, "POST", JSON.stringify(data)).then(function(response) {
+            ajaxRequest(URL, "POST", window.btoa(JSON.stringify(data))).then(function(response) {
                 let decoded_reponse = JSON.parse(response);
 
-                if (decoded_reponse.code)
-                    messages_container.classList.add("valid");
-                else
-                    messages_container.classList.add("invalid");
+                if (decoded_reponse.code) {
+                    messages_container.className = "messages_container valid";
+                    document.getElementById("formulario_registro").reset();
+                } else messages_container.className = "messages_container invalid";
 
                 messages_container.innerHTML = `<small><li>${decoded_reponse.message}</li></small>`;
             }, function(error) {
