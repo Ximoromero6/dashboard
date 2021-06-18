@@ -1,5 +1,12 @@
 const URL = "assets/php/app.php";
 
+(function() {
+    setTimeout(() => {
+        document.querySelector(".loader").style.display = "none";
+        document.body.style.overflow = "initial";
+    }, Math.floor(Math.random() * 500 + 1000));
+})();
+
 function ajaxRequest(url, method, data = "") {
     return new Promise(function(resolve, reject) {
         let request = new XMLHttpRequest();
@@ -29,6 +36,74 @@ function validatePassword(password) {
     let password_regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,20}$/;
     return password.value.match(password_regex) ? true : false;
 }
+
+function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function() {
+        console.log("User signed out.");
+        /* window.location.href = window.location.hostname; */
+    });
+}
+
+function attachSignin(element) {
+    auth2.attachClickHandler(element, {},
+        function(googleUser) {
+            let profile = googleUser.getBasicProfile();
+
+            let data = {
+                "id": profile.getId(),
+                "name": profile.getName(),
+                "image_url": profile.getImageUrl(),
+                "email": profile.getEmail(),
+                "google_account": 1
+            };
+
+            if (profile) {
+                document.querySelector("#formulario_registro").innerHTML = `
+                <div>
+                    <a href="#" onclick="${signOut()}">Cerrar sesión</a>
+                </div>
+            `;
+            } else {
+                ajaxRequest(URL, "POST", window.btoa(JSON.stringify(data))).then(function(response) {
+                    console.log(JSON.parse(response));
+                    if (JSON.parse(response).code) {
+                        document.querySelector("#formulario_registro").innerHTML = `
+                                            <div>
+                                                <h2>Nombre: ${data.name}</h2>
+                                                Imagen: <img src='${data.image_url}' width='60'>
+                                                <p>Email: ${data.email}</p>
+                                            </div>
+                                        `;
+                    }
+                }, function(error) {
+                    console.error("Failed!", error);
+                });
+            }
+        },
+        function(error) {
+            console.log(JSON.stringify(error, undefined, 2));
+        });
+}
+
+var googleUser = {};
+var startApp = function() {
+    gapi.load("auth2", function() {
+        auth2 = gapi.auth2.init({
+            client_id: "926809456675-l4hf33i6q4eqnva0p1j73and1ugl6mgg.apps.googleusercontent.com",
+            cookiepolicy: "single_host_origin",
+        });
+        if (auth2.isSignedIn.get()) {
+            document.querySelector("#formulario_registro").innerHTML = `
+                    <div>
+                        <a href="#" onclick="${signOut()}">Cerrar sesión</a>
+                    </div>
+                `;
+        } else {
+            attachSignin(document.getElementById("customBtn"));
+        }
+    });
+};
 
 let messages_container = document.querySelector(".messages_container"),
     error_messages = new Array();
@@ -105,7 +180,8 @@ document.querySelector("#registro_btn").addEventListener("click", (e) => {
                 "name": name.value,
                 "email": email.value,
                 "password": clave.value,
-                "gender": genero
+                "gender": genero,
+                "google_account": 0
             };
 
             ajaxRequest(URL, "POST", window.btoa(JSON.stringify(data))).then(function(response) {
